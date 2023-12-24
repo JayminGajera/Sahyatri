@@ -25,7 +25,8 @@ const Driver = () => {
       email: "",
       drivingLicence: "",
       vehicleNo: "",
-    })
+    });
+    navigate("/home");
   };
 
   const handleChange = (e) => {
@@ -49,6 +50,7 @@ const Driver = () => {
         <div className="flex flex-col text-[0.9rem] md:text-[1rem]">
           <label>Name (As in PhotoID)</label>
           <input
+            required
             type="text"
             name="name"
             value={formData.name}
@@ -61,6 +63,7 @@ const Driver = () => {
         <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem]">
           <label>Mobile Number</label>
           <input
+            required
             type="number"
             name="mobileNo"
             value={formData.mobileNo}
@@ -73,6 +76,7 @@ const Driver = () => {
         <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem]">
           <label>Email Id</label>
           <input
+            required
             type="email"
             name="email"
             value={formData.email}
@@ -86,6 +90,7 @@ const Driver = () => {
           <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem]">
             <label>Driving Licence Number</label>
             <input
+              required
               type="number"
               name="drivingLicence"
               value={formData.drivingLicence}
@@ -102,6 +107,7 @@ const Driver = () => {
           <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem]">
             <label>Vehicle Registration Number</label>
             <input
+              required
               type="text"
               name="vehicleNo"
               value={formData.vehicleNo}
