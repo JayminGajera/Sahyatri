@@ -6,7 +6,7 @@ import SignUp from "./components/Auth/SignUp";
 
 function App() {
   return (
-    <div className="h-screen w-full bg-[#171515]">
+    <div className="md:h-screen h-full w-full bg-[#171515]">
       <Routes>
         <Route path="/" element={<Start />} />
         <Route path="/choice" element={<Choice />} />
