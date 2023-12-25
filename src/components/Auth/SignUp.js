@@ -131,8 +131,8 @@ const Driver = () => {
           <button type="submit" className="bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-16 py-2 mt-5 md:mt-6 w-full md:py-1">
             Sign Up
           </button>
-          <p className="text-center text-sm sm:text-sm">
-            Already have an account ? <Link to="/login">Login</Link>
+          <p className="text-center text-sm sm:text-sm mt-2">
+            Already have an account ? <Link to="/login" className="text-[#FF8000]">Login</Link>
           </p>
         </div>
       </form>
