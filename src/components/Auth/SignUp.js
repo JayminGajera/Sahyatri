@@ -12,6 +12,7 @@ const Driver = () => {
     drivingLicence: "",
     vehicleNo: "",
   });
+  const [accountType,setAccountType] = useState("");
   const navigate = useNavigate();
 
   const isDriver = useSelector((store) => store.user.isDriver);
@@ -30,8 +31,16 @@ const Driver = () => {
   };
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if(isDriver){
+      setAccountType("Driver");
+    }else{
+      setAccountType("Pessanger");
+    }
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value, accountType }));
+   
   };
+
+  
 
   return (
     <div className="flex md:bg-black flex-col justify-between md:w-1/3 md:mx-auto text-white p-5 md:gap-y-4 gap-y-8">

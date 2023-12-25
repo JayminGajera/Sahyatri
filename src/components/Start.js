@@ -11,7 +11,7 @@ const Start = () => {
       <img src={sahyatri} alt='app-logo'/>
 
       <div onClick={() => navigate("/choice")}>
-        <button className='bg-[#FF8000] text-white rounded-full text-lg md:text-lg px-16 py-2 md:py-2 hover:translate-y-[1px]'>Get Started</button>
+        <button className='bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-8 py-2 md:py-2 hover:translate-y-[1px]'>Get Started</button>
       </div>
     </div>
   )
