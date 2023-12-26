@@ -65,7 +65,7 @@ const Driver = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Enter Your Name"
-            className="border border-[#FF8000] bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+            className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
           />
         </div>
         {/* mobile no */}
@@ -78,7 +78,7 @@ const Driver = () => {
             value={formData.mobileNo}
             onChange={handleChange}
             placeholder="Enter Your Number"
-            className="border border-[#FF8000] bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+            className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
           />
         </div>
         {/* email */}
@@ -91,7 +91,7 @@ const Driver = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="example@gmail.com"
-            className="border border-[#FF8000] bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+            className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
           />
         </div>
         {/* driving license */}
@@ -107,7 +107,7 @@ const Driver = () => {
               maxLength={16}
               minLength={16}
               placeholder="XXXX XXXX XXXX XXXX"
-              className="border border-[#FF8000] bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+              className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
             />
           </div>
         )}
@@ -122,7 +122,7 @@ const Driver = () => {
               value={formData.vehicleNo}
               onChange={handleChange}
               placeholder="XX - XX - XXXX"
-              className="border border-[#FF8000] bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+              className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
             />
           </div>
         )}

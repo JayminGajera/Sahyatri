@@ -36,7 +36,7 @@ const Login = () => {
           value={mobileNo}
           onChange={handleChange}
           placeholder="Enter Your Number"
-          className="border border-[#FF8000] bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+          className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
         />
         <button type="submit" className="bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-16 py-2 mt-10 md:mt-10 w-full md:py-1">
             Get Otp
