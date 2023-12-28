@@ -8,7 +8,7 @@ import Login from "./components/Auth/Login";
 
 function App() {
   return (
-    <div className="md:h-screen h-screen w-full bg-[#171515]">
+    <div className="min-h-screen md:h-fit h-full w-full bg-[#171515]">
       <Routes>
         <Route path="/" element={<Start />} />
         <Route path="/choice" element={<Choice />} />

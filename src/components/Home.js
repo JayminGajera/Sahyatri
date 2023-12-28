@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className='text-white'>
       {
-        isDriver ? "Welcome Driver" : "Welcome Rider"
+        isDriver ? "Welcome Driver" : "Welcome Pessanger"
       }
     </div>
   )
