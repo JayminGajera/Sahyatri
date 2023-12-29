@@ -1,73 +1,54 @@
 import React, { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Camera from "react-html5-camera-photo";
-import "react-html5-camera-photo/build/css/index.css";
+import { signUp } from "../../services/operations/authAPI";
 
 const Driver = () => {
-  const [imgUri, setImgUri] = useState(null);
-  const [cameraOpen, setCameraOpen] = useState(false);
+  const accountType = useSelector((store) => store.user.accountType);
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     name: "",
-    mobileNo: "",
+    mobileNumber: "",
     email: "",
-    drivingLicence: "",
-    vehicleNo: "",
+    vehicleNumber: "",
+    drivingLicence:"",
+    accountType,
+    photo: "323",
+    photoId: "3dffd",
   });
-  const [accountType, setAccountType] = useState("");
-  const navigate = useNavigate();
 
-  const isDriver = useSelector((store) => store.user.isDriver);
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("data", formData);
-    
 
-    const data = await fetch(process.env.REACT_APP_API+"/api/users/register", {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify(formData),
-    });
 
-    const result = await data.json();
+    dispatch(
+      signUp(
+        formData.name,
+        formData.mobileNumber,
+        formData.email,
+        formData.vehicleNumber,
+        formData.drivingLicence,
+        formData.accountType,
+        formData.photo,
+        formData.photoId,
+        navigate
+      )
+    );
 
-    setFormData({
-      name: "",
-      mobileNo: "",
-      email: "",
-      drivingLicence: "",
-      vehicleNo: "",
-    });
-    navigate("/home");
   };
 
   const handleChange = (e) => {
-    if (isDriver) {
-      setAccountType("Driver");
-    } else {
-      setAccountType("Pessanger");
-    }
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-      imgUri,accountType
     }));
-  };
-
-  const handleUri = (dataUri) => {
-    console.log("uri ",dataUri);
-    setImgUri(dataUri);
-    setCameraOpen(false);
-  };
-
-  const handleCamera = () => {
-    setCameraOpen(true);
   };
 
   return (
@@ -77,7 +58,7 @@ const Driver = () => {
         className="text-2xl md:text-2xl cursor-pointer"
       />
       <div className="text-xl md:text-2xl p-2 md:p-0">
-        {isDriver
+        {accountType === "Driver"
           ? "Welcome , Are you redy for give rides !"
           : "Welcome , Are you redy for ride !"}
       </div>
@@ -101,8 +82,8 @@ const Driver = () => {
           <input
             required
             type="number"
-            name="mobileNo"
-            value={formData.mobileNo}
+            name="mobileNumber"
+            value={formData.mobileNumber}
             onChange={handleChange}
             placeholder="Enter Your Number"
             className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
@@ -122,8 +103,8 @@ const Driver = () => {
           />
         </div>
         {/* driving license */}
-        {isDriver && (
-          <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem]">
+        {accountType === "Driver" && (
+          <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem] mb-2">
             <label>Driving Licence Number</label>
             <input
               required
@@ -131,47 +112,27 @@ const Driver = () => {
               name="drivingLicence"
               value={formData.drivingLicence}
               onChange={handleChange}
-              maxLength={16}
-              minLength={16}
               placeholder="XXXX XXXX XXXX XXXX"
               className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
             />
           </div>
         )}
+
         {/* Vehicle Registration Number */}
-        {isDriver && (
+        {accountType === "Driver" && (
           <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem] mb-2">
             <label>Vehicle Registration Number</label>
             <input
               required
               type="text"
-              name="vehicleNo"
-              value={formData.vehicleNo}
+              name="vehicleNumber"
+              value={formData.vehicleNumber}
               onChange={handleChange}
               placeholder="XX - XX - XXXX"
               className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
             />
           </div>
         )}
-        {isDriver && <label>PhotoID</label>}
-        <br/>
-        {isDriver && <button className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-2 md:py-2 outline-none"  onClick={handleCamera}>Take Photo</button>}
-        {isDriver && (
-          <div className="mt-4">
-            {cameraOpen && (
-              <Camera
-              className="border border-[#FF8000] rounded-lg mt-4"
-                onTakePhoto={(dataUri) => {
-                  handleUri(dataUri);
-                }}
-              />
-            )}
-          </div>
-        )}
-
-        {
-          imgUri && <img className="w-[10rem] h-[10rem] rounded-lg mt-4" src={imgUri}/>
-        }
 
         <div>
           <button

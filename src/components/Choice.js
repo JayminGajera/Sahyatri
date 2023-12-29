@@ -9,12 +9,12 @@ const Choice = () => {
   const dispatch = useDispatch();
 
   const handleDriver = () => {
-    dispatch(setUser(true));
+    dispatch(setUser("Driver"));
     navigate("/signup");
   }
 
   const handlePessanger = () => {
-    dispatch(setUser(false));
+    dispatch(setUser("Pessanger"));
     navigate("/signup");
   }
 

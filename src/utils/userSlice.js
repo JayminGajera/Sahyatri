@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
     name:"user",
     initialState:{
-        isDriver:true,
+        accountType:"",
     },
     reducers:{
         setUser : (state,action) => {
-            state.isDriver = action.payload;
+            state.accountType = action.payload;
         }
     }
 });

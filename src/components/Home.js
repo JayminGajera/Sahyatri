@@ -2,11 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 const Home = () => {
-    const isDriver = useSelector((store) => store.user.isDriver);
+    const accountType = useSelector((store) => store.user.accountType);
   return (
     <div className='text-white'>
       {
-        isDriver ? "Welcome Driver" : "Welcome Pessanger"
+        accountType === "Driver" ? "Welcome Driver" : "Welcome Pessanger"
       }
     </div>
   )
