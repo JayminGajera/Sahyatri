@@ -22,9 +22,21 @@ const Driver = () => {
 
   const isDriver = useSelector((store) => store.user.isDriver);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("data", formData);
+    
+
+    const data = await fetch(process.env.REACT_APP_API+"/api/users/register", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(formData),
+    });
+
+    const result = await data.json();
+
     setFormData({
       name: "",
       mobileNo: "",
@@ -44,7 +56,7 @@ const Driver = () => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-      accountType,
+      imgUri,accountType
     }));
   };
 
