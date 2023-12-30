@@ -33,8 +33,6 @@ const Driver = () => {
 
     dispatch(sendOtp(formData.email));
 
-   toast.success("OTP send")
-
   };
 
   const handleChange = (e) => {
