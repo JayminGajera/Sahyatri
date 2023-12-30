@@ -6,6 +6,7 @@ import SignUp from "./components/Auth/SignUp";
 import Home from "./components/Home";
 import Login from "./components/Auth/Login";
 import OtpVerify from "./components/Auth/OtpVerify";
+import MapScreen from "./components/RiderScreen/MapScreen";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
+        <Route path="/map-screen" element={<MapScreen />} />
       </Routes>
     </div>
   );
