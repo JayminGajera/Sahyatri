@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../services/operations/authAPI";
+import { setUserInfo } from "../../utils/userSlice";
 
 const Driver = () => {
   const accountType = useSelector((store) => store.user.accountType);
@@ -27,6 +28,7 @@ const Driver = () => {
     e.preventDefault();
     console.log("data", formData);
 
+    dispatch(setUserInfo(formData));
 
     dispatch(
       signUp(
