@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { login } from "../../services/operations/authAPI";
 
 const Login = () => {
 
-  const [mobileNo,setMobileNo] = useState("");
+  const [mobileNumber,setMobileNo] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('login data',mobileNo);
+    console.log('login data',mobileNumber);
+    
+    dispatch(
+      login(
+        mobileNumber,
+        navigate
+      )
+    );
     setMobileNo("");
   }
 
@@ -33,7 +43,7 @@ const Login = () => {
         <input
           required
           type="number"
-          value={mobileNo}
+          value={mobileNumber}
           onChange={handleChange}
           placeholder="Enter Your Number"
           className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"

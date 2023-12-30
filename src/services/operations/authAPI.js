@@ -2,7 +2,7 @@ import { auth } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
 
-const { SIGN_UP } = auth;
+const { SIGN_UP,LOGIN } = auth;
 
 export function signUp(
   name,
@@ -42,11 +42,29 @@ export function signUp(
         
       
       toast.success("Signup Successful");
-      navigate("/home");
+      navigate("/login");
     } catch (error) {
       console.log("SIGNUP API ERROR............", error);
       toast.error("Signup Failed");
       navigate("/signup");
     }
   };
+}
+
+
+export function login(mobileNumber,navigate){
+  return async () => {
+    try {
+      const response = apiConnector("POST",LOGIN,{
+        mobileNumber
+      });
+
+      toast.success("Login Successful");
+      navigate("/home");
+    } catch (error) {
+      console.log("LOGIN API ERROR............", error);
+      toast.error("Login Failed");
+      navigate("/login");
+    }
+  }
 }
