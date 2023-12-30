@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "../../utils/userSlice";
 import toast from "react-hot-toast";
+import { sendOtp } from "../../services/operations/authAPI";
 
 const Driver = () => {
   const accountType = useSelector((store) => store.user.accountType);
@@ -30,7 +31,7 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-   navigate("/otp-verify");
+    dispatch(sendOtp(email));
 
    toast.success("OTP send")
 

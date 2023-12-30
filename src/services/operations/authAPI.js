@@ -4,6 +4,29 @@ import toast from "react-hot-toast";
 
 const { SIGN_UP,LOGIN } = auth;
 
+export function sendOtp(email, navigate) {
+  return async () => {
+    
+    try {
+      const response = await apiConnector("POST", SENDOTP_API, {
+        email
+      })
+      console.log("SENDOTP API RESPONSE............", response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+
+      toast.success("OTP Sent Successfully")
+      navigate("/otp-verify")
+    } catch (error) {
+      console.log("SENDOTP API ERROR............", error)
+      toast.error("Could Not Send OTP")
+    }
+   
+  }
+}
+
 export function signUp(
   name,
   mobileNumber,
