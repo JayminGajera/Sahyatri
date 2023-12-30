@@ -31,7 +31,7 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-    dispatch(sendOtp(email));
+    dispatch(sendOtp(formData.email));
 
    toast.success("OTP send")
 
