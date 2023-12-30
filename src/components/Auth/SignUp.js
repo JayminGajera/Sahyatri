@@ -3,8 +3,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "../../services/operations/authAPI";
 import { setUserInfo } from "../../utils/userSlice";
+import toast from "react-hot-toast";
 
 const Driver = () => {
   const accountType = useSelector((store) => store.user.accountType);
@@ -30,19 +30,9 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-    dispatch(
-      signUp(
-        formData.name,
-        formData.mobileNumber,
-        formData.email,
-        formData.vehicleNumber,
-        formData.drivingLicence,
-        formData.accountType,
-        formData.photo,
-        formData.photoId,
-        navigate
-      )
-    );
+   navigate("/otp-verify");
+
+   toast.success("OTP send")
 
   };
 

@@ -5,6 +5,7 @@ import Choice from "./components/Choice";
 import SignUp from "./components/Auth/SignUp";
 import Home from "./components/Home";
 import Login from "./components/Auth/Login";
+import OtpVerify from "./components/Auth/OtpVerify";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/otp-verify" element={<OtpVerify />} />
       </Routes>
     </div>
   );
