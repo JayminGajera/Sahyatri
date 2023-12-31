@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "../../utils/userSlice";
 import { sendOtp } from "../../services/operations/authAPI";
+import Upload from "./Upload";
 
 const Driver = () => {
   const accountType = useSelector((store) => store.user.accountType);
@@ -18,9 +19,9 @@ const Driver = () => {
     mobileNumber: "",
     email: "",
     vehicleNumber: "",
-    drivingLicence:"",
+    drivingLicence: "",
     accountType,
-    photo: "323",
+    photo: "",
     photoId: "",
   });
 
@@ -30,8 +31,7 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-    dispatch(sendOtp(formData.email,navigate));
-
+    dispatch(sendOtp(formData.email, navigate));
   };
 
   const handleChange = (e) => {
@@ -137,6 +137,18 @@ const Driver = () => {
               className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
             />
           </div>
+        )}
+        {/* image */}
+        {accountType === "Driver" && (
+          <>
+          <label>Photo</label>
+          <div className='border-dashed border-2 border-[#FF8000] border-opacity-50 rounded-lg p-5'>
+          <Upload
+            setFormData={setFormData}
+          />
+          </div>
+          </>
+          
         )}
 
         <div>
