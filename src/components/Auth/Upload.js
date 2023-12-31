@@ -15,23 +15,24 @@ const Upload = ({ setFormData }) => {
     }
     console.log(files);
   }, []);
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: {
-    "image/*" : [".jpg",".jpeg",".png"]
-  } });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".jpg", ".jpeg", ".png"],
+    },
+  });
 
   const removeImg = (name) => {
     setFiles((files) => files.filter((file) => file.name !== name));
   };
 
- useEffect(() => {
+  useEffect(() => {
     const photoId = files.map((file) => file.preview);
     setFormData((prev) => ({
-        ...prev,
-        photo:photoId[0],
-      }));
- },[files]);
-
-
+      ...prev,
+      photo: photoId[0],
+    }));
+  }, [files]);
 
   return (
     <div>
