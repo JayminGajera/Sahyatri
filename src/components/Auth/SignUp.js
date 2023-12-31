@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "../../utils/userSlice";
-import { sendOtp } from "../../services/operations/authAPI";
+import { sendRegOtp } from "../../services/operations/authAPI";
 import Upload from "./Upload";
 
 const Driver = () => {
@@ -31,7 +31,7 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-    dispatch(sendOtp(formData.email, navigate));
+    dispatch(sendRegOtp(formData, navigate));
   };
 
   const handleChange = (e) => {

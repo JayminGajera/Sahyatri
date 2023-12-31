@@ -3,7 +3,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { login } from "../../services/operations/authAPI";
+import { login,sendLogOtp } from "../../services/operations/authAPI";
+
 
 const Login = () => {
 
