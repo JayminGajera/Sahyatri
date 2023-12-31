@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "../../utils/userSlice";
-import toast from "react-hot-toast";
 import { sendOtp } from "../../services/operations/authAPI";
 
 const Driver = () => {
@@ -31,7 +30,7 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-    dispatch(sendOtp(formData.email));
+    dispatch(sendOtp(formData.email,navigate));
 
   };
 
@@ -130,7 +129,7 @@ const Driver = () => {
             type="submit"
             className="bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-16 py-2 mt-5 md:mt-6 w-full md:py-1"
           >
-            Sign Up
+            Send Otp
           </button>
           <p className="text-center text-sm sm:text-sm mt-2">
             Already have an account ?{" "}

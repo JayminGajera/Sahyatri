@@ -69,7 +69,7 @@ const OtpVerify = () => {
           }}
         />
 
-        <button type="submit" className="bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-16 py-2 mt-5 md:mt-6 w-full md:py-1">Verfiy Otp</button>
+        <button type="submit" className="bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-16 py-2 mt-5 md:mt-6 w-full md:py-1">Sign Up</button>
       </form>
     </div>
   );

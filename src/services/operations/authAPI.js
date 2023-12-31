@@ -2,27 +2,27 @@ import { auth } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
 
-const { SIGN_UP,LOGIN } = auth;
+const { SIGN_UP,LOGIN,SENDOTP_API } = auth;
 
 export function sendOtp(email, navigate) {
   return async () => {
     
-    // try {
-    //   const response = await apiConnector("POST", SENDOTP_API, {
-    //     email
-    //   })
-    //   console.log("SENDOTP API RESPONSE............", response)
+    try {
+      const response = await apiConnector("POST", SENDOTP_API, {
+        email
+      })
+      console.log("SENDOTP API RESPONSE............", response)
 
-    //   if (!response.data.success) {
-    //     throw new Error(response.data.message)
-    //   }
+      if (response.status !== 200) {
+        throw new Error(response.status)
+      }
 
-    //   toast.success("OTP Sent Successfully")
-    //   navigate("/otp-verify")
-    // } catch (error) {
-    //   console.log("SENDOTP API ERROR............", error)
-    //   toast.error("Could Not Send OTP")
-    // }
+      toast.success("OTP Sent Successfully");
+      navigate("/otp-verify");
+    } catch (error) {
+      console.log("SENDOTP API ERROR............", error)
+      toast.error("Could Not Send OTP")
+    }
    
   }
 }
