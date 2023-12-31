@@ -21,7 +21,7 @@ const Driver = () => {
     drivingLicence:"",
     accountType,
     photo: "323",
-    photoId: "3dffd",
+    photoId: "",
   });
 
   const handleSubmit = async (e) => {
@@ -92,6 +92,21 @@ const Driver = () => {
             className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
           />
         </div>
+        {/* Aadhar number */}
+        {accountType === "Driver" && (
+          <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem] mb-2">
+            <label>Aadhar Card Number</label>
+            <input
+              required
+              type="number"
+              name="photoId"
+              value={formData.photoId}
+              onChange={handleChange}
+              placeholder="XXXX XXXX XXXX XXXX"
+              className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
+            />
+          </div>
+        )}
         {/* driving license */}
         {accountType === "Driver" && (
           <div className="flex flex-col text-[0.9rem] mt-3 md:text-[1rem] mb-2">
