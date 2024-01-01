@@ -1,6 +1,7 @@
 import { auth } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
+import { setLoading } from "../../utils/userSlice";
 
 const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API } = auth;
 
@@ -15,7 +16,9 @@ export function sendRegOtp(formData, navigate) {
     photo,
     photoId,
   } = formData;
-  return async () => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
     try {
       const response = await apiConnector("POST", SENDREGOTP_API, {
         name,
@@ -30,7 +33,7 @@ export function sendRegOtp(formData, navigate) {
       console.log("SENDOTP API RESPONSE............", response);
 
       if (!response.data.success) {
-        throw new Error(response.data.message);
+        throw new Error(response.data.success);
       }
 
       toast.success("OTP Sent Successfully");
@@ -39,11 +42,15 @@ export function sendRegOtp(formData, navigate) {
       console.log("SENDOTP API ERROR............", error);
       toast.error("Could Not Send OTP");
     }
+    dispatch(setLoading(false))
+    toast.dismiss(toastId)
   };
 }
 
 export function sendLogOtp(email, navigate) {
-  return async () => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
     try {
       const response = await apiConnector("POST", SENDLOGOTP_API, {
         email,
@@ -60,6 +67,8 @@ export function sendLogOtp(email, navigate) {
       console.log("SENDOTP API ERROR............", error);
       toast.error("Could Not Send OTP");
     }
+    dispatch(setLoading(false))
+    toast.dismiss(toastId)
   };
 }
 
@@ -74,10 +83,12 @@ export function signUp(
   photoId,
   navigate
 ) {
-  return async () => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
     try {
       if (accountType === "Driver") {
-        var response = apiConnector("POST", SIGN_UP, {
+        var response = await apiConnector("POST", SIGN_UP, {
           name,
           mobileNumber,
           email,
@@ -88,7 +99,7 @@ export function signUp(
           photoId,
         });
       } else {
-        var response = apiConnector("POST", SIGN_UP, {
+        var response = await apiConnector("POST", SIGN_UP, {
           name,
           mobileNumber,
           email,
@@ -98,8 +109,8 @@ export function signUp(
 
       console.log("SIGNUP_API RESPONSE....", response);
 
-      // if(!response.success){
-      //   throw new Error("SignUp Failed");
+      // if(!response.data.success){
+      //   throw new Error(response.data.message);
       // }
 
       toast.success("Signup Successful");
@@ -109,21 +120,25 @@ export function signUp(
       toast.error("Signup Failed");
       navigate("/signup");
     }
+    dispatch(setLoading(false))
+    toast.dismiss(toastId)
   };
 }
 
 export function login(mobileNumber, navigate) {
-  return async () => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
     try {
-      const response = apiConnector("POST", LOGIN, {
+      const response = await apiConnector("POST", LOGIN, {
         mobileNumber,
       });
 
       console.log("LOGIN API RESPONSE...",response);
 
-      // if(!response.success){
-      //   throw new Error(response.success);
-      // }
+      if(!response.success){
+        throw new Error(response.success);
+      }
 
       toast.success("Login Successful");
       navigate("/home");
@@ -132,5 +147,7 @@ export function login(mobileNumber, navigate) {
       toast.error("Login Failed");
       navigate("/login");
     }
+    dispatch(setLoading(false))
+    toast.dismiss(toastId)
   };
 }
