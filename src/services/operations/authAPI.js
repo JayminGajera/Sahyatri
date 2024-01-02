@@ -81,6 +81,7 @@ export function signUp(
   accountType,
   photo,
   photoId,
+  otp,
   navigate
 ) {
   return async (dispatch) => {
@@ -97,6 +98,7 @@ export function signUp(
           accountType,
           photo,
           photoId,
+          otp,
         });
       } else {
         var response = await apiConnector("POST", SIGN_UP, {
@@ -104,6 +106,7 @@ export function signUp(
           mobileNumber,
           email,
           accountType,
+          otp,
         });
       }
 

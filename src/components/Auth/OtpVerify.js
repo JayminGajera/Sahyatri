@@ -35,6 +35,7 @@ const OtpVerify = () => {
         accountType,
         photo,
         photoId,
+        otp,
         navigate
       )
     );
