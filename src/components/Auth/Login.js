@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { sendLogOtp } from "../../services/operations/authAPI";
-import { setLogUserNumber } from "../../utils/userSlice";
+import { setIsLogin, setLogUserNumber } from "../../utils/userSlice";
 
 
 const Login = () => {
@@ -18,6 +18,7 @@ const Login = () => {
     console.log('login data',mobileNumber);
 
     dispatch(setLogUserNumber(mobileNumber));
+    dispatch(setIsLogin(true));
     
     dispatch(
       sendLogOtp(mobileNumber,navigate)
@@ -49,7 +50,7 @@ const Login = () => {
           className="border border-[#FF8000] border-opacity-50 bg-[#171515] text-sm rounded-lg py-3 px-3 mt-1 md:py-2 outline-none"
         />
         <button type="submit" className="bg-[#FF8000] text-white rounded-full text-[0.9rem] md:text-lg px-16 py-2 mt-10 md:mt-10 w-full md:py-1">
-            Login
+            Send Otp
           </button>
           <p className="text-center text-sm mt-2 sm:text-sm">
             Don't have an account ? <Link to="/signup" className="text-[#FF8000]">Sign Up</Link>

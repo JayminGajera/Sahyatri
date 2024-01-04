@@ -3,7 +3,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { setUserInfo } from "../../utils/userSlice";
+import { setIsLogin, setUserInfo } from "../../utils/userSlice";
 import { sendRegOtp } from "../../services/operations/authAPI";
 import Upload from "./Upload";
 
@@ -28,7 +28,7 @@ const Driver = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("data", formData);
-
+    dispatch(setIsLogin(false));
     dispatch(setUserInfo(formData));
 
     dispatch(sendRegOtp(formData.email, navigate));
