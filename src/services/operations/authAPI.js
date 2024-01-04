@@ -1,7 +1,7 @@
 import { auth } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
-import { setLoading, setLoginInfo } from "../../utils/userSlice";
+import { setLoading, setLoginInfo, setToken } from "../../utils/userSlice";
 
 const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API } = auth;
 
@@ -124,11 +124,12 @@ export function login(logUserNumber,otp, navigate) {
 
       console.log("LOGIN API RESPONSE...",response);
 
-      // if(!response.success){
-      //   throw new Error(response.message);
-      // }
+      if(!response.data.success){
+        throw new Error(response.data.message);
+      }
 
-      // dispatch(setLoginInfo(response));
+      dispatch(setLoginInfo(response.data.user));
+      dispatch(setToken(response.data.token));
       toast.success("Login Successful");
       navigate("/home");
     } catch (error) {
