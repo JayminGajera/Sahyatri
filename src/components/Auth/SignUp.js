@@ -31,7 +31,7 @@ const Driver = () => {
 
     dispatch(setUserInfo(formData));
 
-    dispatch(sendRegOtp(formData, navigate));
+    dispatch(sendRegOtp(formData.email, navigate));
   };
 
   const handleChange = (e) => {

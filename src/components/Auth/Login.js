@@ -3,7 +3,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { login,sendLogOtp } from "../../services/operations/authAPI";
+import { sendLogOtp } from "../../services/operations/authAPI";
+import { setLogUserNumber } from "../../utils/userSlice";
 
 
 const Login = () => {
@@ -15,14 +16,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('login data',mobileNumber);
+
+    dispatch(setLogUserNumber(mobileNumber));
     
     dispatch(
-      login(
-        mobileNumber,
-        navigate
-      )
+      sendLogOtp(mobileNumber,navigate)
     );
-    setMobileNo("");
   }
 
   const handleChange = (e) => {
