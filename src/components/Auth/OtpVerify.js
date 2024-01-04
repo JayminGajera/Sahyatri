@@ -40,7 +40,7 @@ const OtpVerify = () => {
             Number(otp),
             navigate
           ))
-        : dispatch(login(logUserNumber, Number(otp), navigate))
+        : dispatch(login(Number(logUserNumber), Number(otp), navigate))
     }
     
   };

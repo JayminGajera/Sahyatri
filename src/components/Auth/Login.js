@@ -21,7 +21,7 @@ const Login = () => {
     dispatch(setIsLogin(true));
     
     dispatch(
-      sendLogOtp(mobileNumber,navigate)
+      sendLogOtp(Number(mobileNumber),navigate)
     );
   }
 
