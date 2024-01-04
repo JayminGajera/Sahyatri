@@ -26,7 +26,7 @@ const OtpVerify = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("otp ", otp);
-    {
+    
       !isLogin
         ? dispatch(signUp(
             userData?.name,
@@ -41,7 +41,7 @@ const OtpVerify = () => {
             navigate
           ))
         : dispatch(login(Number(logUserNumber), Number(otp), navigate))
-    }
+    
     
   };
 
