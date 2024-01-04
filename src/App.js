@@ -7,6 +7,8 @@ import Home from "./components/Home";
 import Login from "./components/Auth/Login";
 import OtpVerify from "./components/Auth/OtpVerify";
 import MapScreen from "./components/RiderScreen/MapScreen";
+import PrivateRoute from "./components/Auth/PrivateRoute";
+import Error from "./components/Error";
 
 function App() {
   return (
@@ -15,10 +17,19 @@ function App() {
         <Route path="/" element={<Start />} />
         <Route path="/choice" element={<Choice />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/map-screen" element={<MapScreen />} />
+        <Route path="*" element={<Error />} />
+
       </Routes>
     </div>
   );
