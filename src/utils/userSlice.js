@@ -4,12 +4,12 @@ const userSlice = createSlice({
     name:"user",
     initialState:{
         accountType:"",
-        userData:null,
+        userData: null,
         logUserNumber:null,
         loading:false,
-        loginInfo:null,
+        loginInfo:localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
         isLogin:false,
-        token:null,
+        token: localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null,
     },
     reducers:{
         setUser : (state,action) => {

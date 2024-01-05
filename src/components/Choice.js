@@ -21,12 +21,12 @@ const Choice = () => {
   return (
     <div className="flex flex-col h-screen justify-center gap-y-10 items-center text-white">
       
-        <button onClick={handleDriver} className="border border-[#FF8000] rounded-full px-16 py-3 hover:bg-[#FF8000] hover:bg-opacity-5">
+        <button onClick={handleDriver} className="border-[0.1rem] border-[#FF8000] rounded-full px-16 py-3 hover:bg-[#FF8000] hover:bg-opacity-5">
           Give Ride
         </button>
       
       
-        <button onClick={handlePessanger} className="border border-[#FF8000] rounded-full px-16 py-3 hover:bg-[#FF8000] hover:bg-opacity-5">
+        <button onClick={handlePessanger} className="border-[0.1rem] border-[#FF8000] rounded-full px-16 py-3 hover:bg-[#FF8000] hover:bg-opacity-5">
           Take Ride
         </button>
      
