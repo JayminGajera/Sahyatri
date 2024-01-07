@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Start from "./components/Start";
 import Choice from "./components/Choice";
@@ -12,8 +12,20 @@ import Error from "./components/Error";
 import Start_1 from "./components/Start_1";
 import Start_2 from "./components/Start_2";
 import Start_3 from "./components/Start_3";
+import { getUserDetails } from "./services/operations/authAPI";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const token = JSON.parse(localStorage.getItem("token"));
+      dispatch(getUserDetails(token, navigate));
+    }
+  }, []);
   return (
     <div className="min-h-screen md:h-fit h-full w-full bg-[#171515]">
       <Routes>
@@ -35,7 +47,6 @@ function App() {
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/map-screen" element={<MapScreen />} />
         <Route path="*" element={<Error />} />
-
       </Routes>
     </div>
   );

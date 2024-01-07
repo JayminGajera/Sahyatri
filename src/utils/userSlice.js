@@ -10,6 +10,7 @@ const userSlice = createSlice({
         loginInfo:localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
         isLogin:false,
         token: localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")) : null,
+        user:localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
     },
     reducers:{
         setUser : (state,action) => {
@@ -32,9 +33,12 @@ const userSlice = createSlice({
         },
         setToken:(state,action) => {
             state.token = action.payload;
+        },
+        setUserData:(state,action) => {
+            state.user = action.payload;
         }
     }
 });
 
-export const {setUser,setUserInfo,setLoading,setLogUserNumber,setLoginInfo,setIsLogin,setToken} = userSlice.actions;
+export const {setUser,setUserInfo,setLoading,setLogUserNumber,setLoginInfo,setIsLogin,setToken,setUserData} = userSlice.actions;
 export default userSlice.reducer;

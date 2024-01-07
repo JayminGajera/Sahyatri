@@ -1,9 +1,9 @@
 import { auth } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
-import { setLoading, setLoginInfo, setToken } from "../../utils/userSlice";
+import { setLoading, setLoginInfo, setToken, setUserData } from "../../utils/userSlice";
 
-const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API } = auth;
+const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API,GETUSER_DETAIL_API } = auth;
 
 export function sendRegOtp(email, navigate) {
 
@@ -143,4 +143,32 @@ export function login(logUserNumber,otp, navigate) {
     dispatch(setLoading(false))
     toast.dismiss(toastId)
   };
+}
+
+export function getUserDetails(token, navigate) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
+    try {
+      const response = await apiConnector("GET", GETUSER_DETAIL_API, null, {
+        Authorization: `Bearer ${token}`,
+      })
+      console.log("GET_USER_DETAILS API RESPONSE............", response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+      const userImage = response.data.user.photo
+        ? response.data.user.photo
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`
+      dispatch(setUserData({ ...response.data.user, image: userImage }))
+
+      navigate("/home")
+    } catch (error) {
+      console.log("GET_USER_DETAILS API ERROR............", error)
+      toast.error("Could Not Get User Details")
+    }
+    toast.dismiss(toastId)
+    dispatch(setLoading(false))
+  }
 }
