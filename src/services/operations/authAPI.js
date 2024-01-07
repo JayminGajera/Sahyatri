@@ -158,15 +158,13 @@ export function getUserDetails(token, navigate) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      const userImage = response.data.user.photo
-        ? response.data.user.photo
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`
+      const userImage =  `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`
       dispatch(setUserData({ ...response.data.user, image: userImage }))
 
       navigate("/home")
     } catch (error) {
       console.log("GET_USER_DETAILS API ERROR............", error)
-      toast.error("Could Not Get User Details")
+      toast.error("Login Now")
     }
     toast.dismiss(toastId)
     dispatch(setLoading(false))
