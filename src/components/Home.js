@@ -4,11 +4,11 @@ import DriverHome from './Driver/DriverHome';
 import PessangerHome from './Pessanger/PessangerHome';
 
 const Home = () => {
-    const loginInfo = useSelector((store) => store.user.loginInfo);
+    const user = useSelector((store) => store.user.user);
   return (
     <div className='text-white p-5'>
       {
-        loginInfo?.accountType === "Driver" ? <DriverHome/> : <PessangerHome/> 
+        user?.accountType === "Driver" ? <DriverHome/> : <PessangerHome/> 
       }
     </div>
   )
