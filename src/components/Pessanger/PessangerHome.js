@@ -13,7 +13,7 @@ const PessangerHome = () => {
     setMenu(!menu);
   }
   return (
-    <div className="w-full h-screen md:w-1/3 mx-auto relative text-white p-5">
+    <div className="w-full h-[97vh] md:w-1/3 mx-auto relative text-white p-5">
       <div className="flex flex-col gap-5">
         <img
           onClick={handleToggel}
