@@ -14,16 +14,28 @@ import Start_2 from "./components/Start_2";
 import Start_3 from "./components/Start_3";
 import { getUserDetails } from "./services/operations/authAPI";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import DriverHome from "./components/Driver/DriverHome";
+import PessangerHome from "./components/Pessanger/PessangerHome";
+import AllRequest from "./components/Driver/AllRequest";
+import AcceptReq from "./components/Driver/AcceptReq";
+import PessangerSendReq from "./components/Pessanger/PessangerSendReq";
+import PessangerCompleteRide from "./components/Pessanger/PessangerCompleteRide";
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector((store) => store.user.user);
   
   useEffect(() => {
     if (localStorage.getItem("token")) {
       const token = JSON.parse(localStorage.getItem("token"));
-      dispatch(getUserDetails(token, navigate));
+
+      
+         dispatch(getUserDetails(token, navigate));
+      
+      
     }
   }, []);
   return (
@@ -45,6 +57,15 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
+
+        <Route path="/driver-home" element={<DriverHome />} />
+        <Route path="/driver-all-req" element={<AllRequest />} />
+        <Route path="/driver-accepted-req" element={<AcceptReq />} />
+
+        <Route path="/pessanger-home" element={<PessangerHome />} />
+        <Route path="/pessanger-send-req" element={<PessangerSendReq />} />
+        <Route path="/pessanger-complete-ride" element={<PessangerCompleteRide />} />
+
         <Route path="/map-screen" element={<MapScreen />} />
         <Route path="*" element={<Error />} />
       </Routes>

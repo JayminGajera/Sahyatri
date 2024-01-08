@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Profile from "../Common/Profile";
+import Navbar from "../Common/Navbar";
 
 const DriverHome = () => {
 
   const [menu,setMenu] = useState(false);
+
 
   const loginInfo = useSelector((store) => store.user.loginInfo);
   const user = useSelector((store) => store.user.user);
@@ -15,7 +17,7 @@ const DriverHome = () => {
 
 
   return (
-    <div className="w-full md:w-1/3 mx-auto relative">
+    <div className="w-full h-screen md:w-1/3 mx-auto relative text-white p-5">
       <div className="flex flex-col gap-5">
       <img onClick={handleToggel} className="w-10 rounded-full cursor-pointer" src={user?.image} />
         <h1 className="text-2xl">
@@ -32,6 +34,8 @@ const DriverHome = () => {
         <p>Start Driving</p>
       </div>
 
+      
+      <Navbar/>
       
         {menu && 
        <Profile/>

@@ -19,30 +19,30 @@ const Profile = () => {
         </p>
         <p>
           {user.accountType === "Driver" ? (
-            <span>
-              vehicle No :{" "}
-              <span className="opacity-70">{user?.vehicleNumber}</span>
-            </span>
+            <>
+              <span className="opacity-70">vehicle No : </span>
+              <span>{user?.vehicleNumber}</span>
+            </>
           ) : (
             " "
           )}{" "}
         </p>
         <p>
           {user.accountType === "Driver" ? (
-            <span>
-              Driving Licence No :{" "}
-              <span className="opacity-70">{user?.drivingLicence}</span>
-            </span>
+            <>
+              <span className="opacity-70">Driving Licence No : </span>
+              <span>{user?.drivingLicence}</span>
+            </>
           ) : (
             " "
           )}{" "}
         </p>
         <p>
           {user.accountType === "Driver" ? (
-            <span>
-              Aadhar Card No :{" "}
-              <span className="opacity-70">{user?.photoId}</span>
-            </span>
+            <>
+              <span className="opacity-70">Aadhar Card No : </span>
+              <span>{user?.photoId}</span>
+            </>
           ) : (
             " "
           )}{" "}
