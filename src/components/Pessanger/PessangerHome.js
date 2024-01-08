@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Profile from "../Common/Profile";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../Common/Navbar";
 
 const PessangerHome = () => {
@@ -14,7 +13,7 @@ const PessangerHome = () => {
     setMenu(!menu);
   }
   return (
-    <div className="w-full h-[97vh] md:w-1/3 mx-auto relative text-white p-5">
+    <div className="w-full h-screen md:w-1/3 mx-auto relative text-white p-5">
       <div className="flex flex-col gap-5">
         <img
           onClick={handleToggel}
