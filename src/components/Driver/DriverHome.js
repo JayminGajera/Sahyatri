@@ -17,7 +17,7 @@ const DriverHome = () => {
 
 
   return (
-    <div className="w-full h-[97vh] md:w-1/3 mx-auto relative text-white p-5">
+    <div className="w-full h-[99vh] md:w-1/3 mx-auto relative text-white p-5">
       <div className="flex flex-col gap-5">
       <img onClick={handleToggel} className="w-10 rounded-full cursor-pointer" src={user?.image} />
         <h1 className="text-2xl">
