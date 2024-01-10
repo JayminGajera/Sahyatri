@@ -35,11 +35,11 @@ const PessangerCompleteRide = () => {
   }
 
   return (
-    <div className="w-full h-[100%] md:w-1/3 mx-auto text-white p-5">
+    <div className="w-full h-[100%] md:w-1/3 mx-auto text-white p-5 bg-black">
       <h1 className="text-xl opacity-50">Your ride</h1>
       {allRides?.map((ride) => (
-        <div className="flex flex-col gap-y-3 m-5 mb-10 border border-[#FF8000] p-5 rounded-md">
-          <div className="flex justify-between items-center border-b border-[#FF8000] p-2 opacity-90">
+        <div className="flex flex-col gap-y-3 shadow-[5px_5px_0px_0px_rgba(57,57,57)] bg-[#171515] m-5 mb-10 p-5 rounded-md">
+          <div className="flex justify-between items-center p-2 opacity-90 border-b border-[#393939ed] ">
             <p>{ride.source}</p>
             <FaArrowRightLong/>
             <p>{ride.destination}</p>
