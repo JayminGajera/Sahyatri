@@ -1,28 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Common/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getRideReqest } from "../../services/operations/authAPI";
+// import { getRideReqest } from "../../services/operations/authAPI";
 import { FaArrowRightLong } from "react-icons/fa6";
+import {rides} from "../../services/api"
+const {USER_RIDES} = rides;
 
 const PessangerCompleteRide = () => {
-  const rides = useSelector((store) => store.rideRequest);
-  console.log("rides", rides.rides[0]);
+  // const rides = useSelector((store) => store.rideRequest);
+  const [allRides,setRides] = useState([]);
+  // console.log("rides", rides);
 
   const { requestId } = useParams();
   console.log("req id", requestId);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-      dispatch(getRideReqest(requestId, navigate));
+      // dispatch(getRideReqest(requestId, navigate));
+      getRideData();
   }, []);
+
+  const getRideData = async() => {
+    try {
+      const data = await fetch(USER_RIDES+requestId);
+      const result = await data.json();
+      console.log("result ",result.rideRequest);
+      setRides(result?.rideRequest);
+    } catch (error) {
+      console.log("error while fetch ride request by id")
+    }
+  }
 
   return (
     <div className="w-full h-[100%] md:w-1/3 mx-auto text-white p-5">
       <h1 className="text-xl opacity-50">Your ride</h1>
-      {rides?.rides[0]?.map((ride) => (
+      {allRides?.map((ride) => (
         <div className="flex flex-col gap-y-3 m-5 mb-10 border border-[#FF8000] p-5 rounded-md">
           <div className="flex justify-between items-center border-b border-[#FF8000] p-2 opacity-90">
             <p>{ride.source}</p>
