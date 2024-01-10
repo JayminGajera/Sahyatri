@@ -194,7 +194,7 @@ export function createRide(source,destination,date,_id, navigate) {
       }
 
       toast.success("Ride Created Successfully");
-      navigate("/pessanger-send-req");
+      navigate(`/pessanger-complete-ride/${_id}`);
     } catch (error) {
       console.log("CREATE RIDE API ERROR............", error);
       toast.error("Could Not Create Ride");
