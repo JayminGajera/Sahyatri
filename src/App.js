@@ -64,7 +64,7 @@ function App() {
 
         <Route path="/pessanger-home" element={<PessangerHome />} />
         <Route path="/pessanger-send-req" element={<PessangerSendReq />} />
-        <Route path="/pessanger-complete-ride" element={<PessangerCompleteRide />} />
+        <Route path="/pessanger-complete-ride/:requestId" element={<PessangerCompleteRide />} />
 
         <Route path="/map-screen" element={<MapScreen />} />
         <Route path="*" element={<Error />} />

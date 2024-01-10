@@ -7,3 +7,8 @@ export const auth = {
     SENDLOGOTP_API: BASE_URL + "/api/users/loginOTP",
     GETUSER_DETAIL_API: BASE_URL + "/api/users/getUser",
 };
+
+export const rides = {
+    CREATE_RIDE: BASE_URL + "/api/ride-requests",
+    USER_RIDES: BASE_URL + "/api/ride-requests/",
+};

@@ -1,9 +1,12 @@
-import { auth } from "../api";
+import { auth, rides } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
 import { setLoading, setLoginInfo, setToken, setUserData } from "../../utils/userSlice";
+import { setRides } from "../../utils/rideRequestSlice";
 
 const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API,GETUSER_DETAIL_API } = auth;
+
+const {CREATE_RIDE,USER_RIDES} = rides;
 
 export function sendRegOtp(email, navigate) {
 
@@ -165,6 +168,61 @@ export function getUserDetails(token, navigate) {
     } catch (error) {
       console.log("GET_USER_DETAILS API ERROR............", error)
       toast.error("Login Now")
+    }
+    toast.dismiss(toastId)
+    dispatch(setLoading(false))
+  }
+}
+
+
+export function createRide(source,destination,date,_id, navigate) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
+    try {
+      const response = await apiConnector("POST", CREATE_RIDE, {
+        userId:_id,
+        source,
+        destination,
+        travelTime:date,
+        
+      });
+      console.log("RIDE CREATE API RESPONSE............", response);
+
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+
+      toast.success("Ride Created Successfully");
+      navigate("/pessanger-send-req");
+    } catch (error) {
+      console.log("CREATE RIDE API ERROR............", error);
+      toast.error("Could Not Create Ride");
+    }
+    dispatch(setLoading(false))
+    toast.dismiss(toastId)
+  };
+}
+
+export function getRideReqest(requestId, navigate) {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...")
+    dispatch(setLoading(true))
+    try {
+      const response = await apiConnector("GET", USER_RIDES+requestId)
+      console.log("GET_USER_RIDE API RESPONSE............", response)
+
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+
+      dispatch((setRides(response.data.rideRequest)));
+
+      toast.success("Your Rides")
+      navigate(`/pessanger-complete-ride/${requestId}`)
+    } catch (error) {
+      console.log("GET_USER_RIDE API ERROR............", error)
+      toast.error("Filed to fetch rides")
     }
     toast.dismiss(toastId)
     dispatch(setLoading(false))
