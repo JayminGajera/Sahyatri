@@ -44,7 +44,7 @@ const PessangerHome = () => {
         <img className="mt-10 rounded-lg opacity-80" src={homeimg} />
 
         <Link to={"/pessanger-send-req"}>
-          <p className="flex justify-center w-1/2 gap-x-5 items-center bg-[#FF8000] rounded-full mt-7 p-2">
+          <p className="flex justify-center w-[15rem] gap-x-5 items-center bg-[#FF8000] rounded-full mt-7 p-2">
             Ride Request <FaArrowRightLong />
           </p>
         </Link>
