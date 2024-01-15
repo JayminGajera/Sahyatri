@@ -10,14 +10,6 @@ const Profile = () => {
   const token = useSelector((store) => store.user.token);
   const loginInfo = useSelector((store) => store.user.loginInfo);
 
-  useEffect(() => {
-    if(loginInfo?.accountType === "Driver"){
-      navigate("/driver-home")
-    }else{
-      navigate("/pessanger-home")
-    }
-    
-  },[]);
 
   const handleLogOut = () => {
     localStorage.removeItem("token",token);
