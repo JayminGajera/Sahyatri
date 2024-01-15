@@ -35,9 +35,9 @@ const PessangerHome = () => {
 
         <div className="mt-10 border border-[#FF8000] border-opacity-70 p-5 rounded-md">
           <p className="opacity-70 font-thin">
-            Craft your ride, share your vibes! Customize your passenger profile
+            " Craft your ride, share your vibes! Customize your passenger profile
             for a personalized ride-pooling experience tailored to your
-            preferences."
+            preferences. "
           </p>
         </div>
 
