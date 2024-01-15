@@ -26,16 +26,13 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((store) => store.user.user);
-  
+  const loginInfo = useSelector((store) => store.user.loginInfo);
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       const token = JSON.parse(localStorage.getItem("token"));
 
-      
-         dispatch(getUserDetails(token, navigate));
-      
-      
+      dispatch(getUserDetails(token, navigate));
     }
   }, []);
   return (
@@ -58,13 +55,24 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
 
-        <Route path="/driver-home" element={<DriverHome />} />
-        <Route path="/driver-all-req" element={<AllRequest />} />
-        <Route path="/driver-accepted-req" element={<AcceptReq />} />
+        {loginInfo?.accountType === "Driver" && (
+          <>
+            <Route path="/driver-home" element={<DriverHome />} />
+            <Route path="/driver-all-req" element={<AllRequest />} />
+            <Route path="/driver-accepted-req" element={<AcceptReq />} />
+          </>
+        )}
 
-        <Route path="/pessanger-home" element={<PessangerHome />} />
-        <Route path="/pessanger-send-req" element={<PessangerSendReq />} />
-        <Route path="/pessanger-complete-ride/:requestId" element={<PessangerCompleteRide />} />
+        {loginInfo?.accountType === "Pessanger" && (
+          <>
+            <Route path="/pessanger-home" element={<PessangerHome />} />
+            <Route path="/pessanger-send-req" element={<PessangerSendReq />} />
+            <Route
+              path="/pessanger-complete-ride/:requestId"
+              element={<PessangerCompleteRide />}
+            />
+          </>
+        )}
 
         <Route path="/map-screen" element={<MapScreen />} />
         <Route path="*" element={<Error />} />

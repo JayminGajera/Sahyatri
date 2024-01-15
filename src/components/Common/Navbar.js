@@ -1,18 +1,20 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GoHomeFill } from "react-icons/go";
 import { PiPersonSimpleBikeFill } from "react-icons/pi";
 import { DiGitPullRequest } from "react-icons/di";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const user = useSelector((store) => store.user.user);
 
-  const {_id} = useSelector((store) => store.user.user);
+  const navigate = useNavigate();
+
+  const loginInfo = useSelector((store) => store.user.loginInfo);
+
+  const { _id } = useSelector((store) => store.user.user);
 
   const handleHomeClick = () => {
-    if (user?.accountType === "Driver") {
+    if (loginInfo?.accountType === "Driver") {
       navigate("/driver-home");
     } else {
       navigate("/pessanger-home");
@@ -20,7 +22,7 @@ const Navbar = () => {
   };
 
   const handleReq = () => {
-    if (user?.accountType === "Driver") {
+    if (loginInfo?.accountType === "Driver") {
       navigate("/driver-all-req");
     } else {
       navigate("/pessanger-send-req");
@@ -28,7 +30,7 @@ const Navbar = () => {
   };
 
   const handleCompleteReq = () => {
-    if (user?.accountType === "Driver") {
+    if (loginInfo?.accountType === "Driver") {
       navigate("/driver-accepted-req");
     } else {
       navigate(`/pessanger-complete-ride/${_id}`);
@@ -42,14 +44,24 @@ const Navbar = () => {
       <div onClick={handleReq} className="hover:bg-black p-2 rounded-lg">
         <PiPersonSimpleBikeFill className="text-3xl" />
       </div>
-      <Link to={"/pessanger-complete-ride/"+ _id}>
+
+      {loginInfo?.accountType === "Pessanger" ? (
+        <Link to={"/pessanger-complete-ride/" + _id}>
+          <div
+            onClick={handleCompleteReq}
+            className="hover:bg-black p-2 rounded-lg"
+          >
+            <DiGitPullRequest className="text-3xl" />
+          </div>
+        </Link>
+      ) : (
         <div
           onClick={handleCompleteReq}
           className="hover:bg-black p-2 rounded-lg"
         >
           <DiGitPullRequest className="text-3xl" />
         </div>
-      </Link>
+      )}
     </div>
   );
 };
