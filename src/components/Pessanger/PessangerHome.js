@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Profile from "../Common/Profile";
 import Navbar from "../Common/Navbar";
-import homeimg from "../../assets/logo/home-page.png"
+import homeimg from "../../assets/logo/home-page.png";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-
 const PessangerHome = () => {
-
-  const [menu,setMenu] = useState(false);
+  const [menu, setMenu] = useState(false);
   const loginInfo = useSelector((store) => store.user.loginInfo);
   const user = useSelector((store) => store.user.user);
 
   const handleToggel = () => {
     setMenu(!menu);
-  }
+  };
   return (
     <div className="w-full h-[100%] md:w-1/3 mx-auto relative text-white p-5">
       <div className="flex flex-col gap-5">
@@ -36,21 +34,23 @@ const PessangerHome = () => {
         <p className="text-lg text-gradient">Start Riding</p>
 
         <div className="mt-10 border border-[#FF8000] border-opacity-70 p-5 rounded-md">
-          <p className="opacity-70 font-thin">Craft your ride, share your vibes! Customize your passenger profile for a personalized ride-pooling experience tailored to your preferences."</p>
+          <p className="opacity-70 font-thin">
+            Craft your ride, share your vibes! Customize your passenger profile
+            for a personalized ride-pooling experience tailored to your
+            preferences."
+          </p>
         </div>
 
-        <img className="mt-10 rounded-lg opacity-80" src={homeimg}/>
+        <img className="mt-10 rounded-lg opacity-80" src={homeimg} />
 
         <Link to={"/pessanger-send-req"}>
-        <p className="flex justify-center w-1/2 gap-x-5 items-center bg-[#FF8000] rounded-full mt-7 p-2">Ride Request <FaArrowRightLong/></p>
-
+          <p className="flex justify-center w-1/2 gap-x-5 items-center bg-[#FF8000] rounded-full mt-7 p-2">
+            Ride Request <FaArrowRightLong />
+          </p>
         </Link>
-
-        
-
       </div>
 
-     <Navbar/>
+      <Navbar />
 
       {menu && <Profile />}
     </div>
