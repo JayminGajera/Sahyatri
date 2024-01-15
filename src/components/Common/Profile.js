@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,16 @@ const Profile = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user.user);
   const token = useSelector((store) => store.user.token);
+  const loginInfo = useSelector((store) => store.user.loginInfo);
+
+  useEffect(() => {
+    if(loginInfo?.accountType === "Driver"){
+      navigate("/driver-home")
+    }else{
+      navigate("/pessanger-home")
+    }
+    
+  },[]);
 
   const handleLogOut = () => {
     localStorage.removeItem("token",token);
@@ -15,6 +25,8 @@ const Profile = () => {
     navigate('/login')
     toast.success("Log Out");
   }
+
+
 
   return (
     <div className="absolute top-[3.8rem] left-5 bg-gray-800 h-[85vh] md:h-fit w-[90%] md:w-[90%] rounded-md">
