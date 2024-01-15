@@ -68,7 +68,7 @@ const Profile = () => {
           {user?.verified ? "Verfied" : "Unverify"}
         </p>
         <p>
-          <span className="opacity-70">Starting Date</span> : {user?.createdAt}
+          <span className="opacity-70">Starting Date</span> : {user?.createdAt?.toString().slice(0,10)}
         </p>
       </div>
     </div>
