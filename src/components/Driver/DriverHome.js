@@ -49,14 +49,16 @@ const DriverHome = () => {
         <img className="mt-10 rounded-lg opacity-80" src={homeimg} />
 
         <Link to={"/driver-all-req"}>
-          <p className="flex justify-center w-1/2 gap-x-5 items-center bg-[#FF8000] rounded-full mt-7 p-2">
+          <p className="flex justify-center w-[15rem] gap-x-5 items-center bg-[#FF8000] rounded-full mt-7 p-2">
             Accept Request <FaArrowRightLong />
           </p>
         </Link>
+
       </div>
 
-      <Navbar />
+     
 
+      <Navbar />
       {menu && <Profile />}
     </div>
   );
