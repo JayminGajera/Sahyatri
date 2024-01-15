@@ -3,12 +3,10 @@ import userSlice from "./userSlice";
 import rideRequestSlice from "./rideRequestSlice";
 
 const appStore = configureStore({
-   
-    reducer:{
-        user: userSlice,
-        rideRequest:rideRequestSlice,
-    }
-
+  reducer: {
+    user: userSlice,
+    rideRequest: rideRequestSlice,
+  },
 });
 
 export default appStore;

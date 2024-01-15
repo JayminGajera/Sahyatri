@@ -5,16 +5,14 @@ import { createRide } from "../../services/operations/authAPI";
 import { useNavigate } from "react-router-dom";
 
 const PessangerSendReq = () => {
-
-  const [source,setSource] = useState();
-  const [destination,setDestination] = useState();
-  const [date,setDate] = useState();
+  const [source, setSource] = useState();
+  const [destination, setDestination] = useState();
+  const [date, setDate] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {_id} = useSelector((store) => store.user.user);
-
+  const { _id } = useSelector((store) => store.user.user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,11 +20,8 @@ const PessangerSendReq = () => {
     console.log("destination", destination);
     console.log("date", date);
 
-    dispatch(
-      createRide(source, destination,date,_id, navigate)
-    );
+    dispatch(createRide(source, destination, date, _id, navigate));
   };
-
 
   return (
     <div className="w-full h-[100%] md:w-1/3 mx-auto text-white p-5">

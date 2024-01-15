@@ -21,14 +21,13 @@ const OtpVerify = () => {
 
   const dispatch = useDispatch();
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("otp ", otp);
-    
-      !isLogin
-        ? dispatch(signUp(
+
+    !isLogin
+      ? dispatch(
+          signUp(
             userData?.name,
             userData?.mobileNumber,
             userData?.email,
@@ -39,17 +38,19 @@ const OtpVerify = () => {
             userData?.photoId,
             Number(otp),
             navigate
-          ))
-        : dispatch(login(Number(logUserNumber), Number(otp), navigate))
-    
-    
+          )
+        )
+      : dispatch(login(Number(logUserNumber), Number(otp), navigate));
   };
 
   return (
     <div className="flex md:bg-black flex-col justify-between md:w-1/3 md:mx-auto text-white p-5 md:gap-y-4 gap-y-8">
       <div className="text-xl md:text-2xl p-2 md:p-0">
         <h1>What’s the code ?</h1>
-        <p>Enter the 6-digit code we just sent to +91 {isLogin ? logUserNumber : userData?.mobileNumber} </p>
+        <p>
+          Enter the 6-digit code we just sent to +91{" "}
+          {isLogin ? logUserNumber : userData?.mobileNumber}{" "}
+        </p>
       </div>
       <form onSubmit={handleSubmit}>
         <OtpInput

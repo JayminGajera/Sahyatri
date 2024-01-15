@@ -6,7 +6,6 @@ import { DiGitPullRequest } from "react-icons/di";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-
   const navigate = useNavigate();
 
   const loginInfo = useSelector((store) => store.user.loginInfo);

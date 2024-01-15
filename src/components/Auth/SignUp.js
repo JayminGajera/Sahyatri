@@ -141,14 +141,11 @@ const Driver = () => {
         {/* image */}
         {accountType === "Driver" && (
           <>
-          <label>Photo</label>
-          <div className='border-dashed border-2 border-[#FF8000] border-opacity-50 rounded-lg p-5'>
-          <Upload
-            setFormData={setFormData}
-          />
-          </div>
+            <label>Photo</label>
+            <div className="border-dashed border-2 border-[#FF8000] border-opacity-50 rounded-lg p-5">
+              <Upload setFormData={setFormData} />
+            </div>
           </>
-          
         )}
 
         <div>

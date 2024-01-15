@@ -34,7 +34,7 @@ function App() {
       const token = JSON.parse(localStorage.getItem("token"));
 
       dispatch(getUserDetails(token, navigate));
-    }else{
+    } else {
       dispatch(getUserDetails(token, navigate));
     }
   }, []);

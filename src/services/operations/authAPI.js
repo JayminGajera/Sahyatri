@@ -1,21 +1,26 @@
 import { auth, rides } from "../api";
 import { apiConnector } from "../apiConnector";
 import toast from "react-hot-toast";
-import { setLoading, setLoginInfo, setToken, setUserData } from "../../utils/userSlice";
+import {
+  setLoading,
+  setLoginInfo,
+  setToken,
+  setUserData,
+} from "../../utils/userSlice";
 import { setRides } from "../../utils/rideRequestSlice";
 
-const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API,GETUSER_DETAIL_API } = auth;
+const { SIGN_UP, LOGIN, SENDREGOTP_API, SENDLOGOTP_API, GETUSER_DETAIL_API } =
+  auth;
 
-const {CREATE_RIDE,USER_RIDES} = rides;
+const { CREATE_RIDE, USER_RIDES } = rides;
 
 export function sendRegOtp(email, navigate) {
-
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", SENDREGOTP_API, {
-      email
+        email,
       });
       console.log("SENDOTP API RESPONSE............", response);
 
@@ -29,18 +34,18 @@ export function sendRegOtp(email, navigate) {
       console.log("SENDOTP API ERROR............", error);
       toast.error("Could Not Send OTP");
     }
-    dispatch(setLoading(false))
-    toast.dismiss(toastId)
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
   };
 }
 
 export function sendLogOtp(mobileNumber, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", SENDLOGOTP_API, {
-        mobileNumber
+        mobileNumber,
       });
       console.log("LOGIN SENDOTP API RESPONSE............", response);
 
@@ -54,8 +59,8 @@ export function sendLogOtp(mobileNumber, navigate) {
       console.log("LOGIN SENDOTP API ERROR............", error);
       toast.error("Could Not Send OTP");
     }
-    dispatch(setLoading(false))
-    toast.dismiss(toastId)
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
   };
 }
 
@@ -72,8 +77,8 @@ export function signUp(
   navigate
 ) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       if (accountType === "Driver") {
         var response = await apiConnector("POST", SIGN_UP, {
@@ -99,7 +104,7 @@ export function signUp(
 
       console.log("SIGNUP_API RESPONSE....", response);
 
-      if(!response.data.success){
+      if (!response.data.success) {
         throw new Error(response.data.message);
       }
 
@@ -110,33 +115,36 @@ export function signUp(
       toast.error("Signup Failed");
       navigate("/signup");
     }
-    dispatch(setLoading(false))
-    toast.dismiss(toastId)
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
   };
 }
 
-export function login(logUserNumber,otp, navigate) {
+export function login(logUserNumber, otp, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", LOGIN, {
-        mobileNumber:logUserNumber,
-        otp
+        mobileNumber: logUserNumber,
+        otp,
       });
 
-      console.log("LOGIN API RESPONSE...",response);
+      console.log("LOGIN API RESPONSE...", response);
 
-      if(!response.data.success){
+      if (!response.data.success) {
         throw new Error(response.data.message);
       }
 
-      const userImage =  `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`
-      dispatch(setLoginInfo({...response.data.user,image:userImage}));
+      const userImage = `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`;
+      dispatch(setLoginInfo({ ...response.data.user, image: userImage }));
       dispatch(setToken(response.data.token));
 
-      localStorage.setItem("token",JSON.stringify(response.data.token));
-      localStorage.setItem("user",JSON.stringify(response.data.user));
+      localStorage.setItem("token", JSON.stringify(response.data.token));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...response.data.user, image: userImage })
+      );
       toast.success("Login Successful");
       navigate("/home");
     } catch (error) {
@@ -144,49 +152,47 @@ export function login(logUserNumber,otp, navigate) {
       toast.error("Login Failed");
       navigate("/login");
     }
-    dispatch(setLoading(false))
-    toast.dismiss(toastId)
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
   };
 }
 
 export function getUserDetails(token, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       const response = await apiConnector("GET", GETUSER_DETAIL_API, null, {
         Authorization: `Bearer ${token}`,
-      })
-      console.log("GET_USER_DETAILS API RESPONSE............", response)
+      });
+      console.log("GET_USER_DETAILS API RESPONSE............", response);
 
       if (!response.data.success) {
-        throw new Error(response.data.message)
+        throw new Error(response.data.message);
       }
-      const userImage =  `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`
-      dispatch(setUserData({ ...response.data.user, image: userImage }))
+      const userImage = `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`;
+      dispatch(setUserData({ ...response.data.user, image: userImage }));
 
-      navigate("/home")
+      navigate("/home");
     } catch (error) {
-      console.log("GET_USER_DETAILS API ERROR............", error)
-      toast.error("Login Now")
+      console.log("GET_USER_DETAILS API ERROR............", error);
+      toast.error("Login Now");
     }
-    toast.dismiss(toastId)
-    dispatch(setLoading(false))
-  }
+    toast.dismiss(toastId);
+    dispatch(setLoading(false));
+  };
 }
 
-
-export function createRide(source,destination,date,_id, navigate) {
+export function createRide(source, destination, date, _id, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", CREATE_RIDE, {
-        userId:_id,
+        userId: _id,
         source,
         destination,
-        travelTime:date,
-        
+        travelTime: date,
       });
       console.log("RIDE CREATE API RESPONSE............", response);
 
@@ -200,32 +206,32 @@ export function createRide(source,destination,date,_id, navigate) {
       console.log("CREATE RIDE API ERROR............", error);
       toast.error("Could Not Create Ride");
     }
-    dispatch(setLoading(false))
-    toast.dismiss(toastId)
+    dispatch(setLoading(false));
+    toast.dismiss(toastId);
   };
 }
 
 export function getRideReqest(requestId, navigate) {
   return async (dispatch) => {
-    const toastId = toast.loading("Loading...")
-    dispatch(setLoading(true))
+    const toastId = toast.loading("Loading...");
+    dispatch(setLoading(true));
     try {
-      const response = await apiConnector("GET", USER_RIDES+requestId)
-      console.log("GET_USER_RIDE API RESPONSE............", response)
+      const response = await apiConnector("GET", USER_RIDES + requestId);
+      console.log("GET_USER_RIDE API RESPONSE............", response);
 
       if (!response.data.success) {
-        throw new Error(response.data.message)
+        throw new Error(response.data.message);
       }
 
-      dispatch((setRides(response.data.rideRequest)));
+      dispatch(setRides(response.data.rideRequest));
 
-      toast.success("Your Rides")
-      navigate(`/pessanger-complete-ride/${requestId}`)
+      toast.success("Your Rides");
+      navigate(`/pessanger-complete-ride/${requestId}`);
     } catch (error) {
-      console.log("GET_USER_RIDE API ERROR............", error)
-      toast.error("Filed to fetch rides")
+      console.log("GET_USER_RIDE API ERROR............", error);
+      toast.error("Filed to fetch rides");
     }
-    toast.dismiss(toastId)
-    dispatch(setLoading(false))
-  }
+    toast.dismiss(toastId);
+    dispatch(setLoading(false));
+  };
 }

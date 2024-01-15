@@ -21,6 +21,7 @@ const PessangerHome = () => {
           onClick={handleToggel}
           className="w-10 rounded-full cursor-pointer"
           src={loginInfo?.image}
+          alt="user-img"
         />
         <h1 className="text-2xl">
           Hello👋{" "}
@@ -35,8 +36,8 @@ const PessangerHome = () => {
 
         <div className="mt-10 border border-[#FF8000] border-opacity-70 p-5 rounded-md">
           <p className="opacity-70 font-thin">
-            " Craft your ride, share your vibes! Customize your passenger profile
-            for a personalized ride-pooling experience tailored to your
+            " Craft your ride, share your vibes! Customize your passenger
+            profile for a personalized ride-pooling experience tailored to your
             preferences. "
           </p>
         </div>
@@ -52,7 +53,7 @@ const PessangerHome = () => {
 
       <Navbar />
 
-      {menu && <Profile userInfo={loginInfo}/>}
+      {menu && <Profile userInfo={loginInfo} />}
     </div>
   );
 };

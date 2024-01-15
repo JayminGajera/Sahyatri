@@ -37,12 +37,13 @@ const DriverHome = () => {
 
         <div className="mt-10 border border-[#FF8000] border-opacity-70 p-5 rounded-md">
           <p className="opacity-70 font-thin">
-            " Welcome, Driver! Enhance your ride-sharing experience by setting up
-            your personalized driver profile. Share details about your vehicle,
-            preferred music, and any unique features. Optimize your driving
-            preferences, such as conversation style and temperature settings, to
-            create a comfortable journey for both you and your passengers. Let's
-            make every ride enjoyable and tailored to your preferences! "
+            " Welcome, Driver! Enhance your ride-sharing experience by setting
+            up your personalized driver profile. Share details about your
+            vehicle, preferred music, and any unique features. Optimize your
+            driving preferences, such as conversation style and temperature
+            settings, to create a comfortable journey for both you and your
+            passengers. Let's make every ride enjoyable and tailored to your
+            preferences! "
           </p>
         </div>
 
@@ -53,10 +54,7 @@ const DriverHome = () => {
             Accept Request <FaArrowRightLong />
           </p>
         </Link>
-
       </div>
-
-     
 
       <Navbar />
       {menu && <Profile userInfo={loginInfo} />}
