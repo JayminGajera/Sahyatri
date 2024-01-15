@@ -3,12 +3,11 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({userInfo}) => {
 
   const navigate = useNavigate();
   const user = useSelector((store) => store.user.user);
   const token = useSelector((store) => store.user.token);
-  const loginInfo = useSelector((store) => store.user.loginInfo);
 
 
   const handleLogOut = () => {
@@ -24,44 +23,44 @@ const Profile = () => {
     <div className="absolute top-[3.8rem] left-5 bg-gray-800 h-[85vh] md:h-fit w-[90%] md:w-[90%] rounded-md">
       <div className="flex flex-col justify-center items-start p-5 gap-y-5">
         <div className="flex w-[100%] justify-between">
-        <img className="w-20 rounded-full" src={user?.image} />
+        <img className="w-20 rounded-full" src={userInfo?.image} />
         <button onClick={handleLogOut} className="border border-white rounded-md p-4 h-4 mt-5 flex justify-center items-center bg-gray-500">Log Out</button>
         </div>
-        <h1 className="text-2xl">{user?.name}</h1>
+        <h1 className="text-2xl">{userInfo?.name}</h1>
         <p>
-          <span className="opacity-70">Account Type</span> : {user?.accountType}
+          <span className="opacity-70">Account Type</span> : {userInfo?.accountType}
         </p>
         <p>
-          <span className="opacity-70">Mobile No</span> : {user?.mobileNumber}
+          <span className="opacity-70">Mobile No</span> : {userInfo?.mobileNumber}
         </p>
         <p>
-          <span className="opacity-70">Email</span> : {user?.email}
+          <span className="opacity-70">Email</span> : {userInfo?.email}
         </p>
         <p>
-          {user.accountType === "Driver" ? (
+          {userInfo.accountType === "Driver" ? (
             <>
               <span className="opacity-70">vehicle No : </span>
-              <span>{user?.vehicleNumber}</span>
+              <span>{userInfo?.vehicleNumber}</span>
             </>
           ) : (
             " "
           )}{" "}
         </p>
         <p>
-          {user.accountType === "Driver" ? (
+          {userInfo.accountType === "Driver" ? (
             <>
               <span className="opacity-70">Driving Licence No : </span>
-              <span>{user?.drivingLicence}</span>
+              <span>{userInfo?.drivingLicence}</span>
             </>
           ) : (
             " "
           )}{" "}
         </p>
         <p>
-          {user.accountType === "Driver" ? (
+          {userInfo.accountType === "Driver" ? (
             <>
               <span className="opacity-70">Aadhar Card No : </span>
-              <span>{user?.photoId}</span>
+              <span>{userInfo?.photoId}</span>
             </>
           ) : (
             " "
@@ -69,10 +68,10 @@ const Profile = () => {
         </p>
         <p>
           <span className="opacity-70">Verify</span> :{" "}
-          {user?.verified ? "Verfied" : "Unverify"}
+          {userInfo?.verified ? "Verfied" : "Unverify"}
         </p>
         <p>
-          <span className="opacity-70">Starting Date</span> : {user?.createdAt?.toString().slice(0,10)}
+          <span className="opacity-70">Starting Date</span> : {userInfo?.createdAt?.toString().slice(0,10)}
         </p>
       </div>
     </div>

@@ -20,7 +20,7 @@ const PessangerHome = () => {
         <img
           onClick={handleToggel}
           className="w-10 rounded-full cursor-pointer"
-          src={user?.image}
+          src={loginInfo?.image}
         />
         <h1 className="text-2xl">
           Hello👋{" "}
@@ -52,7 +52,7 @@ const PessangerHome = () => {
 
       <Navbar />
 
-      {menu && <Profile />}
+      {menu && <Profile userInfo={loginInfo}/>}
     </div>
   );
 };

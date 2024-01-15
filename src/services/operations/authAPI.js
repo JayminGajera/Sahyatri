@@ -131,7 +131,8 @@ export function login(logUserNumber,otp, navigate) {
         throw new Error(response.data.message);
       }
 
-      dispatch(setLoginInfo(response.data.user));
+      const userImage =  `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.name}`
+      dispatch(setLoginInfo({...response.data.user,image:userImage}));
       dispatch(setToken(response.data.token));
 
       localStorage.setItem("token",JSON.stringify(response.data.token));
