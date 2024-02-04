@@ -29,15 +29,15 @@ function App() {
   const loginInfo = useSelector((store) => store.user.loginInfo);
   const token = useSelector((store) => store.user.token);
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      const token = JSON.parse(localStorage.getItem("token"));
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     const token = JSON.parse(localStorage.getItem("token"));
 
-      dispatch(getUserDetails(token, navigate));
-    } else {
-      dispatch(getUserDetails(token, navigate));
-    }
-  }, []);
+  //     dispatch(getUserDetails(token, navigate));
+  //   } else {
+  //     dispatch(getUserDetails(token, navigate));
+  //   }
+  // }, []);
   return (
     <div className="min-h-screen md:h-fit h-full w-full bg-[#171515]">
       <Routes>

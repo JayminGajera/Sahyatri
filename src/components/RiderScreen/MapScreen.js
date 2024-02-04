@@ -1,83 +1,38 @@
-import React,{useEffect, useState} from "react";
-import GoogleMapReact from "google-map-react";
+import React from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const MapScreen = () => {
-    const [latitude,setLetitude] = useState("");
-    const [longitude,setLongitude] = useState("");
-
-    const navigate = useNavigate();
-
-  const defaultProps = {
-    center: {
-      lat: latitude,
-      lng: longitude,
-    },
-    zoom: 11,
-  };
-
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-
-  function success(pos) {
-    var crd = pos.coords;
-    setLetitude(crd.latitude);
-    setLongitude(crd.longitude);
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-  }
-
-  function errors(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.permissions
-        .query({ name: "geolocation" })
-        .then(function (result) {
-          console.log(result);
-          if (result.state === "granted") {
-            //If granted then you can directly call your function here
-            navigator.geolocation.getCurrentPosition(success, errors, options);
-          } else if (result.state === "prompt") {
-            //If prompt then the user will be asked to give permission
-            navigator.geolocation.getCurrentPosition(success, errors, options);
-          } else if (result.state === "denied") {
-            //If denied then you have to show instructions to enable location
-          }
-        });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-  }, []);
+  const navigate = useNavigate();
 
   return (
     <div className="flex justify-center text-white md:w-1/3 w-full md:mx-auto">
+      <iframe
+        className="relative h-screen"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117331.68800258408!2d72.56314524532495!3d23.220688229493547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2b987c6d6809%3A0xf86f06a7873e0391!2sGandhinagar%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1707043306344!5m2!1sen!2sin"
+        width="600"
+        height="450"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
 
-        
-      <div className="relative" style={{ height: "100vh", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAniYw9Ekna_jCmd6GlXtrIadN8_fA4Lqg" }}
-          defaultCenter={defaultProps.center}
-          defaultZoom={defaultProps.zoom}
-        ></GoogleMapReact>
-      </div>
-     
       <IoMdArrowBack
-        onClick={() => navigate("/home")}
+        onClick={() => navigate(-1)}
         className="absolute md:left-[28rem] left-[0rem] m-2 bg-[#171515] rounded-full text-2xl md:text-2xl cursor-pointer"
       />
-        <div className="flex flex-col absolute bg-[#171515] rounded-lg w-full m-10 md:w-1/4">
-            <input type="text" placeholder="source" className="border border-b-[#FF8000] border-t-[#171515] border-l-[#171515] border-r-[#171515] border-opacity-50 bg-[#171515] rounded-lg m-2 p-1 outline-none"/>
-            <input type="text" placeholder="destination" className="border border-b-[#FF8000] border-t-[#171515] border-l-[#171515] border-r-[#171515] border-opacity-50 bg-[#171515] rounded-lg m-2 p-1 outline-none"/>
-        </div>
-      
+      <div className="flex flex-col absolute bg-[#171515] rounded-lg w-full m-10 md:w-1/4">
+        <input
+          type="text"
+          placeholder="source"
+          className="border border-b-[#FF8000] border-t-[#171515] border-l-[#171515] border-r-[#171515] border-opacity-50 bg-[#171515] rounded-lg m-2 p-1 outline-none"
+        />
+        <input
+          type="text"
+          placeholder="destination"
+          className="border border-b-[#FF8000] border-t-[#171515] border-l-[#171515] border-r-[#171515] border-opacity-50 bg-[#171515] rounded-lg m-2 p-1 outline-none"
+        />
+      </div>
     </div>
   );
 };

@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Navbar from "../Common/Navbar";
 import { rides } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 const { GET_ALL_REQUESTS } = rides;
 
 const AllRequest = () => {
   const [rideRequest, setRideRequest] = useState([]);
   const [totalReq, setToalReq] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchAllRequests();
@@ -42,7 +45,7 @@ const AllRequest = () => {
               Created Date : {ride?.createdAt?.toString().slice(0, 10)}
             </p>
             <div className="flex justify-end mr-3">
-              <button className=" bg-white bg-opacity-80 text-black w-1/3 rounded-md hover:bg-white">
+              <button onClick={() => navigate("/map-screen")} className=" bg-white bg-opacity-80 text-black w-1/3 rounded-md hover:bg-white">
                 Accept
               </button>
             </div>
